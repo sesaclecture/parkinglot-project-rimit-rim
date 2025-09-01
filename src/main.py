@@ -48,16 +48,16 @@ for rec in list(parking.values()) + list(mon_parking.values()):
         # parkingArea 형식이 잘못된 경우 무시
         pass
 
+# 현재 상태 출력
+print("\n===== 현재 주차 현황 =====")
+for i in range(5):
+    print(f'{i+1}층 {parkinglot[i]}')
+print("일반차량 목록:", json.dumps(parking, indent=4, ensure_ascii=False))
+print("정기차량 목록:", json.dumps(mon_parking, indent=4, ensure_ascii=False))
+print("==========================")
+
 #---------- 메인 ----------#
 while True:
-    # 현재 상태 출력
-    print("\n===== 현재 주차 현황 =====")
-    for i in range(5):
-        print(f'{5-i}층 {parkinglot[i]}')
-    print("일반차량 목록:", json.dumps(parking, indent=4, ensure_ascii=False))
-    print("정기차량 목록:", json.dumps(mon_parking, indent=4, ensure_ascii=False))
-    print("==========================")
-
     menu = input("메뉴를 선택하세요 (입차=1, 출차=2, 종료=0): ").strip()
 
     if menu == "0":
@@ -83,7 +83,7 @@ while True:
             # - 입차 업데이트 후 출력 -#
             print("주차가 완료되었습니다. (정기차량: 입차시간만 업데이트)")
             for i in range(5):
-                print(f'{5 - i}층 {parkinglot[i]}')
+                print(f'{i+1}층 {parkinglot[i]}')
         else:
             #- 사용자 데이터 추가 -#
             parking[carNum] = {
@@ -99,7 +99,7 @@ while True:
             #- 입차 업데이트 후 출력 -#
             print("주차가 완료되었습니다.")
             for i in range(5):
-                print(f'{5-i}층 {parkinglot[i]}')
+                print(f'{i+1}층 {parkinglot[i]}')
 
     #---------- 출차 ----------#
     elif menu == "2":
@@ -171,6 +171,6 @@ while True:
             # 상태 출력
             print("출차가 완료되었습니다. 현재 주차 현황:")
             for i in range(5):
-                print(f'{5-i}층 {parkinglot[i]}')
+                print(f'{i+1}층 {parkinglot[i]}')
         else:
             print("출차를 취소했습니다.")
