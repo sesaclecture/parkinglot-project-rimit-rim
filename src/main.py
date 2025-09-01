@@ -69,7 +69,17 @@ while True:
         #- 사용자 입력 -#
         carNum = input("차량 번호 4자리를 입력해주세요: ")
         startTime = input("입차 시간을 입력해주세요(MM:DD:hh:mm): ")
-        parkingArea = input("주차 위치를 입력해주세요(0F 0): ")
+        
+        # 입력된 주차 위치가 중복되는지 검증
+        while True:
+            parkingArea = input("주차 위치를 입력해주세요(0F 0): ")
+            fl, sl = map(int, parkingArea.split("F "))
+
+            if parkinglot[fl - 1][sl - 1] == "■":
+                print("이미 주차된 자리입니다. 다른 자리를 입력해주세요.")
+                continue
+            else:
+                break
 
         # 정기차량이면: 일반차량 목록에 넣지 않고, 입차시간만 업데이트
         if carNum in mon_parking:
